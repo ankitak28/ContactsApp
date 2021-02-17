@@ -87,7 +87,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/image_view"/>
-
         </LinearLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:Text="Save"
+            android:textSize="32sp"
+            android:textColor="@color/white"
+            android:background="@color/black"/>
     </LinearLayout>
 </FrameLayout>
