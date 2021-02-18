@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.google.android.material.tabs.TabLayout;
@@ -32,6 +33,8 @@ public class HomeActivity extends AppCompatActivity {
         viewPagerAdapter.addFragments(new EnrollFragments(),"Enroll");
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("contacts",MODE_PRIVATE);
+
     }
 }
 

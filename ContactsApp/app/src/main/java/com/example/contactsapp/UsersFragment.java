@@ -11,6 +11,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,6 +23,8 @@ import android.view.ViewGroup;
 public class UsersFragment extends Fragment {
 
     public static final  String TAG = UsersFragment.class.getSimpleName();
+    ListView listView_ ;
+    ArrayList<Contact> contactsList;
     public UsersFragment() {
         // Required empty public constructor
     }
@@ -46,14 +51,41 @@ public class UsersFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         Log.d(TAG, "newInstance: onCreateView");
+        View view = inflater.inflate(R.layout.fragment_users, container, false);
+        listView_ = (ListView)view.findViewById(R.id.listview);
+        contactsList = new ArrayList<>();
+        contactsList.add(new Contact("Anki","dhanbad","22","female","8288815656"));
+        contactsList.add(new Contact("Alka","dhanbad","23","female","8288815656"));
+        contactsList.add(new Contact("Sweety","dhanbad","24","female","8288815656"));
+        contactsList.add(new Contact("Rosy","dhanbad","28","female","8288815656"));
+        contactsList.add(new Contact("Khusbu","dhanbad","29","female","8288815656"));
+        contactsList.add(new Contact("Anki","dhanbad","22","female","8288815656"));
+        contactsList.add(new Contact("Alka","dhanbad","23","female","8288815656"));
+        contactsList.add(new Contact("Sweety","dhanbad","24","female","8288815656"));
+        contactsList.add(new Contact("Rosy","dhanbad","28","female","8288815656"));
+        contactsList.add(new Contact("Khusbu","dhanbad","29","female","8288815656"));
+
+        contactsList.add(new Contact("Anki","dhanbad","22","female","8288815656"));
+        contactsList.add(new Contact("Alka","dhanbad","23","female","8288815656"));
+        contactsList.add(new Contact("Sweety","dhanbad","24","female","8288815656"));
+        contactsList.add(new Contact("Rosy","dhanbad","28","female","8288815656"));
+        contactsList.add(new Contact("Khusbu","dhanbad","29","female","8288815656"));
+
+        CustomAdapter adapter = new CustomAdapter(getContext(),contactsList);
+
+        listView_.setAdapter(adapter);
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_users, container, false);
+          return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Log.d(TAG, "newInstance: onViewCreated");
+
+
+
+
     }
 
     @Override
@@ -77,6 +109,11 @@ public class UsersFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        Log.d(TAG, "newInstance: onViewCreated");
+
+
+        Log.d(TAG, "onViewCreated: "+contactsList.size());
+
         Log.d(TAG, "newInstance: onResume");
     }
 

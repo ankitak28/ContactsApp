@@ -1,6 +1,7 @@
 package com.example.contactsapp;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,8 +12,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,6 +32,7 @@ public class EnrollFragments extends Fragment {
     private EditText city;
     private EditText phone;
     private ImageView image;
+    private Button submitButton;
     public EnrollFragments() {
         // Required empty public constructor
     }
@@ -60,12 +66,34 @@ public class EnrollFragments extends Fragment {
         city = view.findViewById(R.id.city_edittext);
         phone = view.findViewById(R.id.phone_edittext);
         image = view.findViewById(R.id.image_view);
+        submitButton = view.findViewById(R.id.submit);
         return view;
     }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Log.d(TAG, "newInstance: onViewCreated");
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Contact contact = new Contact();
+                contact.setName(name.getText().toString());
+                contact.setAge(age.getText().toString());
+                contact.setCity(city.getText().toString());
+                contact.setPhone(phone.getText().toString());
+
+                SharedPreferences sharedPreferences = getContext().getSharedPreferences("contacts",MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString(contact.toString(),"").commit();
+                Log.d(TAG, "onClick: "+contact.toString());
+                Toast.makeText(getContext(),"Contact Saved!",Toast.LENGTH_SHORT).show();
+                name.setText("");
+                age.setText("");
+                phone.setText("");
+                city.setText("");
+            }
+        });
+
     }
 
     @Override

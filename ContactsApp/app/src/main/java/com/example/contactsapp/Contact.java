@@ -3,14 +3,19 @@ package com.example.contactsapp;
 public class Contact {
     String name;
     String city;
-    int age;
-    long phone;
+    String age;
+    String gender;
+    String phone;
 
-    public Contact(String name, String city, int age, long phone) {
+    public Contact(String name, String city, String age, String gender,String phone) {
         this.name = name;
         this.city = city;
         this.age = age;
+        this.gender = gender;
         this.phone = phone;
+    }
+    public  Contact(){
+
     }
 
     public String getName() {
@@ -29,19 +34,38 @@ public class Contact {
         this.city = city;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 
-    public long getPhone() {
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(long phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    @Override
+    public String toString() {
+        return "Contact{" +
+                "name='" + name + '\'' +
+                ", city='" + city + '\'' +
+                ", age='" + age + '\'' +
+                ", gender='" + gender + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
     }
 }
